@@ -13,8 +13,38 @@ A lightweight, serverless Telegram chatbot powered by **DeepSeek AI** and **Supa
 
 ## 📐 Architecture
 
-```
-User (Telegram) → Webhook → Supabase Edge Function → DeepSeek API → Reply
+```mermaid
+graph TB
+    User[👤 User] -->|Sends message| TG[📱 Telegram API]
+    TG -->|Webhook POST| Edge[⚡ Supabase Edge Function<br/>Deno Runtime]
+    
+    Edge -->|1. Parse message| Handler[Message Handler]
+    Handler -->|2. Check command| Commands{Command?}
+    
+    Commands -->|/start| Welcome[Send Welcome]
+    Commands -->|/clear| Clear[Clear History]
+    Commands -->|/help| Help[Send Help]
+    Commands -->|No| Process[Process Message]
+    
+    Process -->|3. Retrieve| Memory[(🧠 In-Memory Store<br/>Conversation History)]
+    Memory -->|4. Add user message| Memory
+    
+    Process -->|5. Call API| DeepSeek[🤖 DeepSeek API<br/>deepseek-chat model]
+    DeepSeek -->|6. AI Response| Process
+    
+    Process -->|7. Save reply| Memory
+    Process -->|8. Send reply| TGBot[Telegram Bot API]
+    Welcome --> TGBot
+    Clear --> TGBot
+    Help --> TGBot
+    
+    TGBot -->|9. Message delivered| User
+    
+    style Edge fill:#3ecf8e
+    style DeepSeek fill:#6366f1
+    style Memory fill:#f59e0b
+    style TG fill:#0088cc
+    style User fill:#64748b
 ```
 
 ---
