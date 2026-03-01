@@ -7,6 +7,10 @@ A lightweight, serverless Telegram chatbot powered by **DeepSeek AI** and **Supa
 
 ---
 
+## Demo 
+
+![](/docs/iShot_2026-03-01_23.04.47.gif)
+
 ## 📐 Architecture
 
 ```
