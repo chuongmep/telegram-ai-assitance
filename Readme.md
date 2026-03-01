@@ -1,5 +1,10 @@
 
 I DON'T NEED OPEN CLAW !!! 
+- You don't need to buy mac mini 
+- You don't need subscription for expensive cloud services
+- You don't need to set up complex infrastructure and understand library
+- You don't need to take so much ai bubble to create a simple chatbot
+...
 
 # 🤖 Telegram AI Agent — DeepSeek + Supabase Edge Functions
 
